@@ -25,7 +25,7 @@ root.render(
           <Route path="/cocktailsletter/:letter">
             <CocktailsLetter/>
           </Route>
-          <Route path="/recette">
+          <Route path="/recette/:recetteId">
             <Recette/>
           </Route>
         </Switch>

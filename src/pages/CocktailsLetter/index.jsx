@@ -28,28 +28,30 @@ const DrinkName = styled.li(props =>({
 
 function CocktailsLetter() {
   
-    let { id: queryId, letter: queryLetter } = useParams()
+    let { letter: queryLetter } = useParams()
 
     const { data, isLoading, error } = useFetch(
         `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${queryLetter}`
     )
 
-    let cocktailsLetter = data?.drinks?.map((drink) => drink.strDrink)
-    console.log("cocktailsLetter", cocktailsLetter)
+    let drinksLetter = data?.drinks
 
     const couleurs = [colors.pink, colors.orange, colors.yellow, colors.pinkorange, colors.blue]
-
+    
 
     return (
       <div>
         <CocktailsList>
-        {cocktailsLetter?.map((drink, index) => (
-            // <Link to="/recette" >
-              <DrinkName background={couleurs[Math.floor(Math.random() * 5)]}>
-                {drink}
-              </DrinkName>
-            // </Link>
-            )
+        {drinksLetter?.map((drink, index) => {
+          const randomColor = couleurs[Math.floor(Math.random() * 5)]; 
+            return (
+              <Link key={`recette-${index}`} to={`/recette/${drink.idDrink}`}>
+                <DrinkName background={randomColor}>
+                  {drink.strDrink}
+                </DrinkName>
+              </Link>
+              )
+          }
         )}
         </CocktailsList>
       </div>
