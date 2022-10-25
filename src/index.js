@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Home from './pages/Home'
 import Cocktails from './pages/Cocktails'
 import Recette from './pages/Recette'
+import CocktailsLetter from './pages/CocktailsLetter'
 import App from './App'
 import reportWebVitals from './reportWebVitals';
 
@@ -20,6 +21,9 @@ root.render(
           </Route>
           <Route path="/cocktails">
             <Cocktails/>
+          </Route>
+          <Route path="/cocktailsletter/:letter">
+            <CocktailsLetter/>
           </Route>
           <Route path="/recette">
             <Recette/>
