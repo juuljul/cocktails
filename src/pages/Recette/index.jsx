@@ -3,6 +3,9 @@ import { Link, useParams, useLocation } from 'react-router-dom'
 import { useFetch } from '../../utils/hooks'
 import styled from 'styled-components'
 import { couleursArray } from '../../utils/style/colors'
+import Ingredients from '../../components/Ingredients'
+import { DrinkName } from '../../components/Drinks'
+
 
 
 const CocktailContainer = styled.div({
@@ -10,12 +13,12 @@ const CocktailContainer = styled.div({
 });
 
 const ImgCocktail = styled.img({
-  width: '60%',
+  width: '80%',
   margin: 'auto'
 });
 
 const DetailCocktailContainer = styled.div({
-  flex: 2,
+  flex: 1.61,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -29,14 +32,22 @@ const IngredientContainer = styled.div({
   justifyContent: 'flex-start',
 });
 
+const SubTitle = styled.div({
+  fontSize: '18px',
+  marginTop: "50px",
+  marginBottom:"40px"
+});
+
+
 const RecetteContainer = styled.div({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  paddingBottom: '20px',
+  paddingLeft: "60px",
+  paddingRight: "60px",
 });
 
-
-const IngredientTitle = styled.h2({
-  fontSize: '20px',
-  fontWeight:'bold'
-});
 
 
 function Recette() {
@@ -54,7 +65,7 @@ function Recette() {
 
     let ingredients = []
     
-    for (let i=1; i<15; i++){
+    for (let i=1; i<10; i++){
       const strIngredient = "strIngredient"+i
       const strMeasure = "strMeasure"+i
       const name = drink[strIngredient]? drink[strIngredient] : null
@@ -82,25 +93,14 @@ function Recette() {
         </ImgCocktailContainer>
         <DetailCocktailContainer>
           <IngredientContainer>
-            <IngredientTitle>
+            <DrinkName couleur={couleur} fontSize="35px">
             {drink.strDrink}
-            </IngredientTitle>
-            <IngredientTitle>
-              INGREDIENTS
-            </IngredientTitle>
-            {ingredients?.map(ingredient => {
-              return (
-              <div>
-                {ingredient.name} ------- {ingredient.measure}
-              </div>
-              )
-            }
-            )}
-            <IngredientTitle>
-              INSTRUCTIONS
-            </IngredientTitle>
+            </DrinkName>
+            <SubTitle>INGREDIENTS </SubTitle>
+            <Ingredients couleur={couleur} ingredients={ingredients}/>
           </IngredientContainer>
           <RecetteContainer>
+            <SubTitle>INSTRUCTIONS</SubTitle>
             <div>{drink.strInstructions}</div>
           </RecetteContainer>
         </DetailCocktailContainer>
