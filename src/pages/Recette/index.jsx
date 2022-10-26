@@ -5,27 +5,45 @@ import styled from 'styled-components'
 import { couleursArray } from '../../utils/style/colors'
 
 
+const CocktailContainer = styled.div({
+  display: 'flex',
+});
+
+const ImgCocktail = styled.img({
+  width: '60%',
+  margin: 'auto'
+});
+
+const DetailCocktailContainer = styled.div({
+  flex: 2,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  paddingBottom: '20px'
+});
+
+const IngredientContainer = styled.div({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+});
+
+const RecetteContainer = styled.div({
+});
 
 
-function Recette(props) {
+const IngredientTitle = styled.h2({
+  fontSize: '20px',
+  fontWeight:'bold'
+});
 
-  const params = useParams()
-  console.log("PARAMS", params)
-  let couleur = couleursArray[params.randomColor]
-  // let couleur = couleursArray[parseInt(params.randomColor)]
-  console.log(couleur)
 
-    // function useQuery() {
-    //   const { search } = useLocation();
-    //   return React.useMemo(() => new URLSearchParams(search), [search]);
-    // }
+function Recette() {
 
-    // let { recetteId: queryRecetteId, randomColor: queryRandomColor } = useParams()
-    // // let query = useQuery();
-    // // let bgcolor = query.get("bgcolor")
-
-    // console.log("queryRecetteId", queryRecetteId)
-    // console.log("queryRandomColor", queryRandomColor)
+    const params = useParams()
+    console.log("PARAMS", params)
+    let couleur = couleursArray[params.randomColor]
 
     const { data, isLoading, error } = useFetch(
         `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${params.recetteId}`
@@ -34,25 +52,60 @@ function Recette(props) {
     let drinks = data?.drinks
     let drink = drinks? drinks[0] : {}
 
-    const DrinkName = styled.div(props =>({
+    let ingredients = []
+    
+    for (let i=1; i<15; i++){
+      const strIngredient = "strIngredient"+i
+      const strMeasure = "strMeasure"+i
+      const name = drink[strIngredient]? drink[strIngredient] : null
+      const measure = drink[strMeasure]? drink[strMeasure] : null
+      if (name!=null && measure!=null) {
+        let ingredient = {}
+        ingredient.name = name
+        ingredient.measure = measure
+        ingredients.push(ingredient)
+      }
+     }
+    
+    const ImgCocktailContainer = styled.div({
       background: couleur,
-      padding: '10px',
-      paddingLeft: "40px",
-      paddingRight: "40px",
-      fontSize: '20px',
-      color:'white',
-      margin: "auto",
-      marginBottom: '20px',
-      fontWeight:'bold'
-    }));
+      flex: 1,
+      display: 'flex',
+      alignItems: 'center',
+    });
 
-    // console.log(props.match.params.recetteId)
 
     return (
-      <DrinkName background={couleur} margin="auto">
-          {drink.strDrink}
-      </DrinkName>
+      <CocktailContainer>
+        <ImgCocktailContainer>
+          <ImgCocktail src={drink.strDrinkThumb}/>
+        </ImgCocktailContainer>
+        <DetailCocktailContainer>
+          <IngredientContainer>
+            <IngredientTitle>
+            {drink.strDrink}
+            </IngredientTitle>
+            <IngredientTitle>
+              INGREDIENTS
+            </IngredientTitle>
+            {ingredients?.map(ingredient => {
+              return (
+              <div>
+                {ingredient.name} ------- {ingredient.measure}
+              </div>
+              )
+            }
+            )}
+            <IngredientTitle>
+              INSTRUCTIONS
+            </IngredientTitle>
+          </IngredientContainer>
+          <RecetteContainer>
+            <div>{drink.strInstructions}</div>
+          </RecetteContainer>
+        </DetailCocktailContainer>
+      </CocktailContainer>
       )
-  }
+}
 
 export default Recette

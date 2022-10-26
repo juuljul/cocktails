@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { couleursArray } from '../../utils/style/colors'
+import { StyledLink } from '../../utils/style/Atoms'
 
 
 
@@ -33,9 +34,9 @@ function Home() {
     <div>
       <Alphabet>
         {alphabet?.map((letter, id) => (
-            <Link key={`cocktailsletter-${id}`} to={`/cocktailsletter/${letter}`}>
+            <StyledLink key={`cocktailsletter-${id}`} to={`/cocktailsletter/${letter}`}>
              <Letter background={couleursArray[Math.floor(Math.random() * 5)]}>{letter}</Letter>
-            </Link>
+            </StyledLink>
           )
         )}
       </Alphabet>

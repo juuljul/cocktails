@@ -18,7 +18,7 @@ const HeaderLogo = styled.img`
   left: 0;
 `
 const HeaderTitle = styled.h2`
-  font-size: 42px;
+  font-size: 32px;
 `
 const HeaderLanguage = styled.p`
   position: absolute;

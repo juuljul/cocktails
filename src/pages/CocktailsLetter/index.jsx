@@ -3,12 +3,15 @@ import {useState,useEffect } from 'react'
 import { useFetch } from '../../utils/hooks'
 import styled from 'styled-components'
 import { couleursArray } from '../../utils/style/colors'
+import { StyledLink } from '../../utils/style/Atoms'
+
 
 
 const CocktailsList = styled.ul({
   listStyleType: 'none',
   display: "flex",
   flexDirection: 'column',
+  alignItems: 'center'
 })
 
 const DrinkName = styled.li(props =>({
@@ -18,7 +21,6 @@ const DrinkName = styled.li(props =>({
   paddingRight: "40px",
   fontSize: '20px',
   color:'white',
-  margin: "auto",
   marginBottom: '20px',
   fontWeight:'bold'
 }));
@@ -42,11 +44,11 @@ function CocktailsLetter() {
           let randomNumber = Math.floor(Math.random() * 5);
           let randomColor = couleursArray[randomNumber];
             return (
-              <Link key={`recette-${index}`} to={`/recette/${drink.idDrink}/${randomNumber}`}>
+              <StyledLink key={`recette-${index}`} to={`/recette/${drink.idDrink}/${randomNumber}`}>
                 <DrinkName background={randomColor}>
                   {drink.strDrink}
                 </DrinkName>
-              </Link>
+              </StyledLink>
               )
           }
         )}
