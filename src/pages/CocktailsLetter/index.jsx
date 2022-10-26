@@ -2,8 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import {useState,useEffect } from 'react'
 import { useFetch } from '../../utils/hooks'
 import styled from 'styled-components'
-import colors from '../../utils/style/colors'
-
+import { couleursArray } from '../../utils/style/colors'
 
 
 const CocktailsList = styled.ul({
@@ -25,7 +24,6 @@ const DrinkName = styled.li(props =>({
 }));
 
 
-
 function CocktailsLetter() {
   
     let { letter: queryLetter } = useParams()
@@ -36,16 +34,15 @@ function CocktailsLetter() {
 
     let drinksLetter = data?.drinks
 
-    const couleurs = [colors.pink, colors.orange, colors.yellow, colors.pinkorange, colors.blue]
-    
 
     return (
       <div>
         <CocktailsList>
         {drinksLetter?.map((drink, index) => {
-          const randomColor = couleurs[Math.floor(Math.random() * 5)]; 
+          let randomNumber = Math.floor(Math.random() * 5);
+          let randomColor = couleursArray[randomNumber];
             return (
-              <Link key={`recette-${index}`} to={`/recette/${drink.idDrink}`}>
+              <Link key={`recette-${index}`} to={`/recette/${drink.idDrink}/${randomNumber}`}>
                 <DrinkName background={randomColor}>
                   {drink.strDrink}
                 </DrinkName>

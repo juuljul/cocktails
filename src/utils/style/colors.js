@@ -6,4 +6,6 @@ const colors = {
   blue: '#4fd8ffff',
 }
 
-export default colors
+const couleursArray = Object.values(colors)
+
+export  { colors, couleursArray }
