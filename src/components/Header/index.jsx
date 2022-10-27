@@ -2,6 +2,7 @@ import cocktails from '../../assets/cocktails.png'
 import styled from 'styled-components'
 import { useState } from 'react'
 import { StyledLink } from '../../utils/style/Atoms'
+import { Link, useParams } from 'react-router-dom'
 
 
 
@@ -38,15 +39,18 @@ function Header() {
   const [isFrench, setFrench] = useState(true)
     return (
       <HeaderContainer>
+        
         <HeaderLogo src={cocktails}/>
+        <StyledLink to={`/`} couleur="black">
         <HeaderTitle>Which cocktail today ?</HeaderTitle>
+        </StyledLink> 
         {isFrench 
         ?
         <StyledLink to={`/`}>
         <HeaderLanguage onClick={() => setFrench(false)}>french</HeaderLanguage>
         </StyledLink>
         :
-        <StyledLink to={`/`}>
+        <StyledLink to={`/frenchcocktails`}>
         <HeaderLanguage onClick={() => setFrench(true)}>english</HeaderLanguage>
         </StyledLink>
         }

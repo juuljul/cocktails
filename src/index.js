@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Cocktails from './pages/Cocktails'
 import Recette from './pages/Recette'
 import CocktailsLetter from './pages/CocktailsLetter'
+import FrenchCocktails from './pages/FrenchCocktails'
 import App from './App'
 import reportWebVitals from './reportWebVitals';
 import { StyledLink } from './utils/style/Atoms'
@@ -16,15 +17,16 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <StyledLink to="/" couleur="black">
       <Header/>
-      </StyledLink>
       <Switch>
           <Route exact path="/">
             <Home />
           </Route>
           <Route path="/cocktails">
             <Cocktails/>
+          </Route>
+          <Route path="/frenchcocktails">
+            <FrenchCocktails/>
           </Route>
           <Route path="/cocktailsletter/:letter">
             <CocktailsLetter/>

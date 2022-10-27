@@ -8,9 +8,18 @@ import { DrinkName } from '../../components/Drinks'
 
 
 
+
 const CocktailContainer = styled.div({
   display: 'flex',
 });
+
+const ImgCocktailContainer = styled.div(props =>({
+  background: props.background,
+  flex: 1,
+  display: 'flex',
+  alignItems: 'center',
+}));
+
 
 const ImgCocktail = styled.img({
   width: '80%',
@@ -49,7 +58,6 @@ const RecetteContainer = styled.div({
 });
 
 
-
 function Recette() {
 
     const params = useParams()
@@ -77,18 +85,10 @@ function Recette() {
         ingredients.push(ingredient)
       }
      }
-    
-    const ImgCocktailContainer = styled.div({
-      background: couleur,
-      flex: 1,
-      display: 'flex',
-      alignItems: 'center',
-    });
-
 
     return (
       <CocktailContainer>
-        <ImgCocktailContainer>
+        <ImgCocktailContainer background={couleur}>
           <ImgCocktail src={drink.strDrinkThumb}/>
         </ImgCocktailContainer>
         <DetailCocktailContainer>
