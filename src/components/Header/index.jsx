@@ -1,5 +1,7 @@
 import cocktails from '../../assets/cocktails.png'
 import styled from 'styled-components'
+import { useState } from 'react'
+import { StyledLink } from '../../utils/style/Atoms'
 
 
 
@@ -20,18 +22,34 @@ const HeaderLogo = styled.img`
 const HeaderTitle = styled.h2`
   font-size: 32px;
 `
-const HeaderLanguage = styled.p`
-  position: absolute;
-  right: 50px;
-`
+
+const HeaderLanguage = styled.button({
+  position: 'absolute',
+  top: '40px',
+  right: '50px',
+  background: 'none',
+	outline: 'none',
+	border: 'none',
+  fontSize: '18px',
+});
 
 
 function Header() {
+  const [isFrench, setFrench] = useState(true)
     return (
       <HeaderContainer>
         <HeaderLogo src={cocktails}/>
         <HeaderTitle>Which cocktail today ?</HeaderTitle>
-        <HeaderLanguage>english</HeaderLanguage>
+        {isFrench 
+        ?
+        <StyledLink to={`/`}>
+        <HeaderLanguage onClick={() => setFrench(false)}>french</HeaderLanguage>
+        </StyledLink>
+        :
+        <StyledLink to={`/`}>
+        <HeaderLanguage onClick={() => setFrench(true)}>english</HeaderLanguage>
+        </StyledLink>
+        }
       </HeaderContainer>
     )
   }
