@@ -31,7 +31,7 @@ root.render(
           <Route path="/cocktailsletter/:letter">
             <CocktailsLetter/>
           </Route>
-          <Route path="/recette/:recetteId/:randomColor">
+          <Route path="/recette/:recetteId/:randomColor/:language">
             <Recette/>
           </Route>
         </Switch>

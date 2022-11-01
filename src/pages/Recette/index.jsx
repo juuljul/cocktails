@@ -63,10 +63,17 @@ function Recette() {
     const params = useParams()
     console.log("PARAMS", params)
     let couleur = couleursArray[params.randomColor]
+    let language = params.language
+    let url = ""
 
-    const { data, isLoading, error } = useFetch(
-        `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${params.recetteId}`
-    )
+    if (language == "english") {
+      url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${params.recetteId}`
+    } 
+    else if (language == "french") {
+      url = `http://localhost:8000/cocktail?id=${params.recetteId}`
+    }
+
+    const { data, isLoading, error } = useFetch(url)
 
     let drinks = data?.drinks
     let drink = drinks? drinks[0] : {}

@@ -36,10 +36,9 @@ const HeaderLanguage = styled.button({
 
 
 function Header() {
-  const [isFrench, setFrench] = useState(true)
+  const [isFrench, setFrench] = useState(false)
     return (
       <HeaderContainer>
-        
         <HeaderLogo src={cocktails}/>
         <StyledLink to={`/`} couleur="black">
         <HeaderTitle>Which cocktail today ?</HeaderTitle>
@@ -47,7 +46,7 @@ function Header() {
         {isFrench 
         ?
         <StyledLink to={`/`}>
-        <HeaderLanguage onClick={() => setFrench(false)}>french</HeaderLanguage>
+        <HeaderLanguage onClick={() => setFrench(false)}>français</HeaderLanguage>
         </StyledLink>
         :
         <StyledLink to={`/frenchcocktails`}>
