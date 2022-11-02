@@ -24,15 +24,15 @@ const HeaderTitle = styled.h2`
   font-size: 32px;
 `
 
-const HeaderLanguage = styled.button({
+const HeaderText = styled.button(props =>({
   position: 'absolute',
-  top: '40px',
-  right: '50px',
+  top: props.top,
+  right: props.right,
   background: 'none',
 	outline: 'none',
 	border: 'none',
-  fontSize: '18px',
-});
+  fontSize: props.fontSize,
+}));
 
 
 function Header() {
@@ -42,15 +42,18 @@ function Header() {
         <HeaderLogo src={cocktails}/>
         <StyledLink to={`/`} couleur="black">
         <HeaderTitle>Which cocktail today ?</HeaderTitle>
-        </StyledLink> 
+        </StyledLink>
+        <StyledLink to={`/mycocktails`}>
+        <HeaderText right='140px' fontSize='15px' top="44px">MES COCKTAILS</HeaderText>
+        </StyledLink>
         {isFrench 
         ?
         <StyledLink to={`/`}>
-        <HeaderLanguage onClick={() => setFrench(false)}>français</HeaderLanguage>
+        <HeaderText right='40px' fontSize='18px' top="40px" onClick={() => setFrench(false)}>français</HeaderText>
         </StyledLink>
         :
         <StyledLink to={`/frenchcocktails`}>
-        <HeaderLanguage onClick={() => setFrench(true)}>english</HeaderLanguage>
+        <HeaderText right='40px' fontSize='18px' top="40px" onClick={() => setFrench(true)}>english</HeaderText>
         </StyledLink>
         }
       </HeaderContainer>

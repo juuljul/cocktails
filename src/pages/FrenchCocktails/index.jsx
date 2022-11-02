@@ -30,9 +30,9 @@ function FrenchCocktails() {
           {frenchDrinks?.map((drink, index) => {
             let randomNumber = Math.floor(Math.random() * 5);
             let randomColor = couleursArray[randomNumber];
-            let language = "french"
+            let origin = "frenchCocktails"
               return (
-                <StyledLink key={`recette-${index}`} to={`/recette/${drink.idDrink}/${randomNumber}/${language}`}>
+                <StyledLink key={`recette-${index}`} to={`/recette/${drink.idDrink}/${randomNumber}/${origin}`}>
                   <CocktailLabel background={randomColor}>
                     {drink.strDrink}
                   </CocktailLabel>

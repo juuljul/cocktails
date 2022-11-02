@@ -6,22 +6,33 @@ import { StyledLink } from '../../utils/style/Atoms'
 import { CocktailsList, CocktailLabel } from '../../components/CocktailsList'
 
 
-function CocktailsLetter() {
+const AddButton = styled.button(props =>({
+    position: 'absolute',
+    bottom: '40px',
+    right: '50px',
+    background: 'none',
+    outline: 'none',
+    border: 'none',
+    fontSize: '18px',
+  }));
+
+
+function MyCocktails() {
   
-    let { letter: queryLetter } = useParams()
     const { data, isLoading, error } = useFetch(
-        `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${queryLetter}`
+        `http://localhost:8000/mycocktails`
     )
-    let drinksLetter = data?.drinks
+    let drinks = data?.drinks
 
     return (
+        <div>
         <CocktailsList>
-        {drinksLetter?.map((drink, index) => {
+        {drinks?.map((drink, index) => {
           let randomNumber = Math.floor(Math.random() * 5);
           let randomColor = couleursArray[randomNumber];
-          let origin = "letterCocktails"
+          let origin = "myCocktails"
             return (
-              <StyledLink key={`recette-${index}`} to={`/recette/${drink.idDrink}/${randomNumber}/${origin}`}>
+              <StyledLink key={`recette-${index}`} to={`/recette/${drink.strDrink}/${randomNumber}/${origin}`}>
                 <CocktailLabel background={randomColor}>
                   {drink.strDrink}
                 </CocktailLabel>
@@ -30,7 +41,12 @@ function CocktailsLetter() {
           }
         )}
         </CocktailsList>
+        <StyledLink to={`/create`}>
+        <AddButton>CRÉER UN COCKTAIL</AddButton>
+        </StyledLink>
+        </div>
+
     )
   }
 
-export default CocktailsLetter
+export default MyCocktails

@@ -4,10 +4,11 @@ import './index.css';
 import { BrowserRouter as Router, Route, Switch,Link } from 'react-router-dom'
 import Header from './components/Header'
 import Home from './pages/Home'
-import Cocktails from './pages/Cocktails'
 import Recette from './pages/Recette'
 import CocktailsLetter from './pages/CocktailsLetter'
 import FrenchCocktails from './pages/FrenchCocktails'
+import CreateCocktail from './pages/CreateCocktail'
+import MyCocktails from './pages/MyCocktails'
 import App from './App'
 import reportWebVitals from './reportWebVitals';
 import { StyledLink } from './utils/style/Atoms'
@@ -22,8 +23,11 @@ root.render(
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/cocktails">
-            <Cocktails/>
+          <Route path="/create">
+            <CreateCocktail/>Ò
+          </Route>
+          <Route path="/mycocktails">
+            <MyCocktails/>
           </Route>
           <Route path="/frenchcocktails">
             <FrenchCocktails/>
@@ -31,7 +35,7 @@ root.render(
           <Route path="/cocktailsletter/:letter">
             <CocktailsLetter/>
           </Route>
-          <Route path="/recette/:recetteId/:randomColor/:language">
+          <Route path="/recette/:recetteId/:randomColor/:origin">
             <Recette/>
           </Route>
         </Switch>
