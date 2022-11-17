@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from 'styled-components'
 import { useFetch } from '../../utils/hooks'
-
+import { couleursArray } from '../../utils/style/colors'
 
 
 const CreateContainer = styled.div(props =>({
@@ -19,10 +19,39 @@ const IngredientContainer = styled.div(props =>({
   display: 'flex',
 }))
 
-
-const FormLabel = styled.button(props =>({
-  fontSize: '18px',
+const FormInput = styled.input(props =>({
+  marginBottom: props.mb
 }))
+
+const IngredientInput = styled.input(props =>({
+  marginRight: '5px',
+  marginLeft: '5px'
+}))
+
+const FormArea = styled.textarea(props =>({
+  marginBottom: props.mb
+}))
+
+const Label = styled.label(props =>({
+  background: props.background,
+  padding: '6px',
+  textAlign: 'center',
+  fontSize: '16px',
+  color:'white',
+  marginBottom: '20px',
+  marginTop: props.mt,
+  fontWeight: 'bold'
+}));
+
+const Button = styled.button({
+  background: couleursArray[1],
+  padding: '8px',
+  textAlign: 'center',
+  fontSize: '20px',
+  color:'white',
+  fontWeight: 'bold',
+  border: 'none'
+});
 
 const CreateCocktail = () => {
   const [strDrink, setStrDrink] = useState('');
@@ -85,23 +114,25 @@ const CreateCocktail = () => {
     <CreateContainer className="createContainer">
       <h2>Créez votre propre cocktail</h2>
       <FormContainer onSubmit={handleSubmit}>
-        <label>Nom du cocktail:</label>
-        <input 
+        <Label background={couleursArray[2]}>Nom du cocktail</Label>
+        <FormInput 
           type="text" 
           required 
           value={strDrink}
           onChange={(e) => setStrDrink(e.target.value)}
+          mb="20px"
         />
+        <Label background={couleursArray[2]}>Ingrédients</Label>
         <IngredientContainer>
         <label>Ingrédient:</label>
-        <input 
+        <IngredientInput 
           type="text" 
           required 
           value={strIngredient1}
           onChange={(e) => setIngredient1(e.target.value)}
         />
         <label>Mesure:</label>
-        <input 
+        <IngredientInput 
           type="text" 
           required 
           value={strMeasure1}
@@ -113,13 +144,13 @@ const CreateCocktail = () => {
             return (
               <IngredientContainer key={index}>
               <label>Ingrédient:</label>
-              <input 
+              <IngredientInput 
                 type="text" 
                 value={ingredients[index]}
                 onChange={(e) => updateIngredient(index, e.target.value)}
               />
               <label>Mesure:</label>
-              <input 
+              <IngredientInput 
                 type="text" 
                 value={measures[index]}
                 onChange={(e) => updateMeasure(index, e.target.value)}
@@ -129,13 +160,14 @@ const CreateCocktail = () => {
           }
         )}
 
-        <label>Instructions</label>
-        <textarea
+        <Label background={couleursArray[2]} mt="20px">Instructions</Label>
+        <FormArea
           required
           value={strInstructions}
           onChange={(e) => setInstruction(e.target.value)}
-        ></textarea>
-        <button>Créez votre cocktail</button>
+          mb="20px"
+        />
+        <Button>Créez votre cocktail</Button>
       </FormContainer>
     </CreateContainer>
   );

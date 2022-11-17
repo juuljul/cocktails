@@ -26,12 +26,12 @@ const HeaderTitle = styled.h2`
 
 const HeaderText = styled.button(props =>({
   position: 'absolute',
-  top: props.top,
+  top: '45px',
   right: props.right,
   background: 'none',
 	outline: 'none',
 	border: 'none',
-  fontSize: props.fontSize,
+  fontSize: '15px',
 }));
 
 
@@ -44,16 +44,16 @@ function Header() {
         <HeaderTitle>Which cocktail today ?</HeaderTitle>
         </StyledLink>
         <StyledLink to={`/mycocktails`}>
-        <HeaderText right='140px' fontSize='15px' top="44px">MES COCKTAILS</HeaderText>
+        <HeaderText right='130px'>MES COCKTAILS</HeaderText>
         </StyledLink>
         {isFrench 
         ?
         <StyledLink to={`/`}>
-        <HeaderText right='40px' fontSize='18px' top="40px" onClick={() => setFrench(false)}>français</HeaderText>
+        <HeaderText right='30px' onClick={() => setFrench(false)}>FRANÇAIS</HeaderText>
         </StyledLink>
         :
         <StyledLink to={`/frenchcocktails`}>
-        <HeaderText right='40px' fontSize='18px' top="40px" onClick={() => setFrench(true)}>english</HeaderText>
+        <HeaderText right='30px' onClick={() => setFrench(true)}>ENGLISH</HeaderText>
         </StyledLink>
         }
       </HeaderContainer>

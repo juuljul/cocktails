@@ -4,17 +4,28 @@ import styled from 'styled-components'
 import { couleursArray } from '../../utils/style/colors'
 import { StyledLink } from '../../utils/style/Atoms'
 import { CocktailsList, CocktailLabel } from '../../components/CocktailsList'
+import plus from '../../assets/plus.png'
 
 
-const AddButton = styled.button(props =>({
+
+const AddContainer = styled.div(props =>({
     position: 'absolute',
-    bottom: '40px',
-    right: '50px',
-    background: 'none',
-    outline: 'none',
-    border: 'none',
-    fontSize: '18px',
+    bottom: '60px',
+    right: '60px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   }));
+  
+  const AddText = styled.div(props =>({
+    fontSize: '18px',
+    marginTop: '15px'
+  }));
+
+const ImgPlus = styled.img({
+  width: '60px',
+});
+  
 
 
 function MyCocktails() {
@@ -41,8 +52,11 @@ function MyCocktails() {
           }
         )}
         </CocktailsList>
-        <StyledLink to={`/create`}>
-        <AddButton>CRÉER UN COCKTAIL</AddButton>
+        <StyledLink to={`/create`} couleur="black">
+        <AddContainer>
+        <ImgPlus src={plus}/>
+        <AddText>CRÉER UN COCKTAIL</AddText>
+        </AddContainer>
         </StyledLink>
         </div>
 
