@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { couleursArray } from '../../utils/style/colors'
 import { StyledLink } from '../../utils/style/Atoms'
 import { CocktailsList, CocktailLabel } from '../../components/CocktailsList'
+import { ErrorMessage } from '../../components/Error'
 import plus from '../../assets/plus.png'
 
 
@@ -37,27 +38,33 @@ function MyCocktails() {
 
     return (
         <div>
-        <CocktailsList>
-        {drinks?.map((drink, index) => {
-          let randomNumber = Math.floor(Math.random() * 5);
-          let randomColor = couleursArray[randomNumber];
-          let origin = "myCocktails"
-            return (
-              <StyledLink key={`recette-${index}`} to={`/recette/${drink.strDrink}/${randomNumber}/${origin}`}>
-                <CocktailLabel background={randomColor}>
-                  {drink.strDrink}
-                </CocktailLabel>
-              </StyledLink>
-              )
-          }
-        )}
-        </CocktailsList>
-        <StyledLink to={`/create`} couleur="black">
-        <AddContainer>
-        <ImgPlus src={plus}/>
-        <AddText>CRÉER UN COCKTAIL</AddText>
-        </AddContainer>
-        </StyledLink>
+         {error
+          ? <ErrorMessage>Pour pouvoir créer un cocktail, cloner l'api french cocktails correspondante</ErrorMessage>
+          :
+          <div>
+          <CocktailsList>
+          {drinks?.map((drink, index) => {
+            let randomNumber = Math.floor(Math.random() * 5);
+            let randomColor = couleursArray[randomNumber];
+            let origin = "myCocktails"
+              return (
+                <StyledLink key={`recette-${index}`} to={`/recette/${drink.strDrink}/${randomNumber}/${origin}`}>
+                  <CocktailLabel background={randomColor}>
+                    {drink.strDrink}
+                  </CocktailLabel>
+                </StyledLink>
+                )
+            }
+          )}
+          </CocktailsList>
+          <StyledLink to={`/create`} couleur="black">
+          <AddContainer>
+          <ImgPlus src={plus}/>
+          <AddText>CRÉER UN COCKTAIL</AddText>
+          </AddContainer>
+          </StyledLink>
+          </div>
+        }
         </div>
 
     )

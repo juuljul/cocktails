@@ -75,7 +75,7 @@ const CreateCocktail = () => {
       alert ("Le nom de cocktail est déjà utilisé dans vos cocktails créés")
       return
     }
-
+    
     const cocktail = { strDrink, strIngredient1, strMeasure1, strInstructions };
     
     for (let i=2; i<7; i++){

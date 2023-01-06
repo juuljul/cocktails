@@ -24,7 +24,7 @@ root.render(
             <Home />
           </Route>
           <Route path="/create">
-            <CreateCocktail/>Ò
+            <CreateCocktail/>
           </Route>
           <Route path="/mycocktails">
             <MyCocktails/>

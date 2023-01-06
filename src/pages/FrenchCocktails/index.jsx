@@ -2,15 +2,8 @@ import { useFetch } from '../../utils/hooks'
 import { couleursArray } from '../../utils/style/colors'
 import { StyledLink } from '../../utils/style/Atoms'
 import { CocktailsList, CocktailLabel } from '../../components/CocktailsList'
-import styled from 'styled-components'
+import { ErrorMessage } from '../../components/Error'
 
-
-const ErrorMessage = styled.div({
-  display: "flex",
-  justifyContent: 'center',
-  fontSize: '26px',
-  marginTop: '100px'
-})
 
 
 function FrenchCocktails() {
